@@ -13,12 +13,12 @@ An AI-powered MRI classification system for detecting different stages of Alzhei
 
 This project uses a pre-trained ResNet-18 model, fine-tuned on brain MRI scans, to classify images into four stages of Alzheimer's disease:
 
-| Class | Description | Test Accuracy |
-|-------|-------------|---------------|
-| **No Impairment** | Healthy brain, no cognitive decline | 97.50% |
-| **Very Mild Impairment** | Minimal cognitive changes | 86.83% |
-| **Mild Impairment** | Early stage cognitive decline | 91.06% |
-| **Moderate Impairment** | Significant cognitive impairment | 100.00% |
+| Class                    | Description                         | Test Accuracy |
+| ------------------------ | ----------------------------------- | ------------- |
+| **No Impairment**        | Healthy brain, no cognitive decline | 97.50%        |
+| **Very Mild Impairment** | Minimal cognitive changes           | 86.83%        |
+| **Mild Impairment**      | Early stage cognitive decline       | 91.06%        |
+| **Moderate Impairment**  | Significant cognitive impairment    | 100.00%       |
 
 ## Features
 
@@ -48,13 +48,13 @@ AI4Alzheimers/
 │           ├── Moderate Impairment/
 │           ├── No Impairment/
 │           └── Very Mild Impairment/
-├── notebooks/                    # Jupyter notebooks for development
-│   ├── 01_eda.ipynb             # Exploratory data analysis
-│   ├── 02_preprocessing.ipynb   # Data preprocessing steps
-│   ├── 03_baseline.ipynb        # Baseline model experiments
-│   ├── label_check.ipynb        # Dataset label verification
-│   ├── train_model.ipynb        # Original training notebook
-│   └── train_model_FINAL.ipynb  # Production notebook with evaluation
+├── notebooks/                              # Jupyter notebooks for development
+│   ├── 01_eda.ipynb                       # Exploratory data analysis
+│   ├── 02_preprocessing.ipynb             # Data preprocessing steps
+│   ├── 03_baseline.ipynb                  # Baseline model experiments
+│   ├── label_check.ipynb                  # Dataset label verification
+│   ├── train_model.ipynb                  # Original training notebook
+│   └── Alzheimers_MRI_Classification_Final.ipynb  # Production notebook with evaluation
 ├── outputs/                      # Generated outputs
 │   └── confusion_matrix.png     # Visualization of model performance
 ├── requirements.txt              # Python dependencies
@@ -65,12 +65,14 @@ AI4Alzheimers/
 ## Installation
 
 1. Clone this repository:
+
 ```bash
 git clone <repository-url>
 cd AI4Alzheimers
 ```
 
 2. Create and activate a virtual environment:
+
 ```bash
 python -m venv .venv
 # Windows
@@ -80,6 +82,7 @@ source .venv/bin/activate
 ```
 
 3. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -89,16 +92,18 @@ pip install -r requirements.txt
 ### Using the Production Notebook (Recommended)
 
 ```bash
-jupyter notebook notebooks/train_model_FINAL.ipynb
+jupyter notebook notebooks/Alzheimers_MRI_Classification_Final.ipynb
 ```
 
 **The notebook will:**
+
 - ✅ Load the existing trained model by default (no retraining)
 - ✅ Evaluate on test set and display metrics
 - ✅ Generate confusion matrix visualization
 - ✅ Save results to `outputs/confusion_matrix.png`
 
 **To retrain from scratch** (not recommended unless needed):
+
 1. Open the notebook
 2. Set `TRAIN = True` in the model loading cell
 3. Run all cells (⚠️ will overwrite existing model)
@@ -116,11 +121,13 @@ jupyter notebook notebooks/train_model_FINAL.ipynb
 ## Running the Web App
 
 1. Navigate to the app directory:
+
 ```bash
 cd app
 ```
 
 2. Start the Streamlit server:
+
 ```bash
 streamlit run app.py
 ```
@@ -147,20 +154,23 @@ streamlit run app.py
 ## Model Details
 
 ### Architecture
+
 - **Base**: ResNet-18 (18 deep convolutional layers)
 - **Pre-training**: ImageNet (1.2M images, 1000 classes)
 - **Modification**: Final FC layer replaced (512 → 4 classes)
 - **Fine-tuning**: Layers 3, 4, and FC (remaining layers frozen)
 
 ### Input/Output Specifications
+
 - **Input Shape**: (224, 224, 3) - RGB images
-- **Preprocessing**: 
+- **Preprocessing**:
   - Resize to 224×224
   - Normalize: mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
 - **Output**: 4-class probability distribution
 - **Inference Time**: ~50-100ms per image (CPU)
 
 ### Training Dataset
+
 - **Total Images**: 11,519 brain MRI scans
 - **Split**: 88.9% train (10,240), 11.1% test (1,279)
 - **Class Distribution** (train/test):
@@ -172,17 +182,20 @@ streamlit run app.py
 ## Tech Stack
 
 ### Core Frameworks
+
 - **PyTorch** (2.9.1) - Deep learning framework
 - **TorchVision** (0.24.1) - Computer vision utilities
 - **Streamlit** (1.52.2) - Web application framework
 
 ### Data Science
+
 - **scikit-learn** (1.3+) - Metrics (accuracy, F1, confusion matrix)
 - **Matplotlib** (3.7+) - Plotting confusion matrix
 - **Seaborn** (0.12+) - Statistical data visualization
 - **Pillow** (12.0) - Image processing
 
 ### Development
+
 - **Jupyter** (1.1.1) - Interactive notebooks
 - **Python** (3.12.6) - Programming language
 
@@ -213,6 +226,7 @@ The model's performance is documented in `notebooks/train_model_FINAL.ipynb`:
 ## Contributing
 
 This project was developed for educational purposes to demonstrate:
+
 - Transfer learning with ResNet-18
 - Medical image classification
 - Production-ready ML pipeline
