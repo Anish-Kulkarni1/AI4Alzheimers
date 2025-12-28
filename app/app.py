@@ -28,12 +28,13 @@ transform = transforms.Compose([
     )
 ])
 
-# ---- Label mapping (LOCKED) ----
+# ---- Label mapping (must match training dataset) ----
+# Based on dataset.class_to_idx: {'Mild Impairment': 0, 'Moderate Impairment': 1, 'No Impairment': 2, 'Very Mild Impairment': 3}
 class_names = [
-    "Mild Demented",        # 0
-    "Moderate Demented",    # 1
-    "Non-Demented",         # 2
-    "Very Mild Demented"    # 3
+    "Mild Impairment",        # 0
+    "Moderate Impairment",    # 1
+    "No Impairment",          # 2
+    "Very Mild Impairment"    # 3
 ]
 
 # ---- UI ----
