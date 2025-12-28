@@ -48,7 +48,7 @@ source .venv/bin/activate
 
 3. Install dependencies:
 ```bash
-pip install torch torchvision streamlit pillow
+pip install -r requirements.txt
 ```
 
 ## Training the Model
